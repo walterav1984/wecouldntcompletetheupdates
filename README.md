@@ -39,7 +39,11 @@ p4 doasyoulike(p5-16)
 
 ### Linux Install disk layout
 Prepare disk with gparted, device create partition table msdos (1st ntfs /2nd linux) and during linux install select bootloader to install into mbr of that disk (default behaviour for ubuntu 16.04).
-After first boot into linux re-install grub2bootloader into the partition instead of mbr and install seperate new mbr code which jumps to the grubbootloader on the 2nd partition without having it active so the ntfs partition could stay active for Windows.
+After first boot into linux re-install grub2bootloader into the partition instead of mbr and install seperate new mbr code which jumps to the grubbootloader on the 2nd partition without having it active so the ntfs partition could stay active for Windows. 
+
+note: 
+'dpkg-reconfigure grub-pc' won't show the 3rd disk/partition install screen anymore because of following bug, use 'install-mbr' before ubuntu install and install directly to 2nd partition and make it active:
+https://askubuntu.com/questions/1212569/dpkg-reconfigure-grub-pc-no-option-to-select-boot-device
 
 ```
 sudo dpkg-reconfigure grub-pc #uncheck mbr, check partition of linux install
